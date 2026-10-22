@@ -2,7 +2,7 @@ import { useAuth } from "@clerk/clerk-react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ShieldCheck } from "lucide-react";
 
-import AdminLayout from "./layouts/AdminLayout";
+import ProtectedLayout from "./layouts/ProtectedLayout";
 
 import SignInPage from "./pages/SignInPage";
 import Dashboard from "./pages/Dashboard";
@@ -59,20 +59,6 @@ function AuthLoading() {
       </section>
     </main>
   );
-}
-
-function ProtectedLayout() {
-  const { isLoaded, isSignedIn } = useAuth();
-
-  if (!isLoaded) {
-    return <AuthLoading />;
-  }
-
-  if (!isSignedIn) {
-    return <Navigate to="/admin/sign-in" replace />;
-  }
-
-  return <AdminLayout />;
 }
 
 export default function App() {

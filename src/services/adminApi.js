@@ -131,6 +131,8 @@ export function createAdminApi(getToken) {
   return {
     request,
 
+    verifyAccess: () => request("/verify"),
+
     getOverview: () => request("/overview"),
 
     getRecords: (model, params = {}) => {
